@@ -3,6 +3,42 @@
   <head>
     <title>JavaScript Number Guessing Game</title>
     <script src="script.js" defer></script>
+    <style>
+      /* simple modal styles for name entry */
+      #nameModal{
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.5);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        z-index:1000;
+      }
+      #nameModal .modal-content{
+        background:#fff;
+        padding:20px;
+        border-radius:8px;
+        width:320px;
+        box-shadow:0 6px 20px rgba(0,0,0,0.2);
+        text-align:left;
+      }
+      #nameModal input[type="text"]{
+        width:100%;
+        padding:8px 10px;
+        margin-top:8px;
+        margin-bottom:6px;
+        box-sizing:border-box;
+      }
+      #nameError{color:#b00; font-size:0.9rem; height:1.1rem}
+  /* proximity colors */
+  .prox-scorching{ color: #c90000; font-weight:700 }
+  .prox-boiling{ color: #ff3b30; font-weight:700 }
+  .prox-very-hot{ color: #ff6b35 }
+  .prox-hot{ color: #ff8c00 }
+  .prox-warm{ color: #ffb84d }
+  .prox-cold{ color: #3aa0ff }
+  .prox-ice-cold{ color: #1e90ff }
+    </style>
   </head>
   <body>
     <p id="date"></p>
@@ -22,6 +58,10 @@
     <h3>Stats</h3>
     <p id="wins">Total wins: 0</p>
     <p id="avgScore">Average Score: </p>
+  <p id="rating"></p>
+    <p id="roundTime">Round time: 0.00s</p>
+    <p id="fastestTime">Fastest: --</p>
+  <p id="avgTime">Average time: --</p>
 
     <h3>Leaderboard</h3>
     <ol>
@@ -29,5 +69,17 @@
       <li name="leaderboard">100</li>
       <li name="leaderboard">100</li>
     </ol>
+
+    <!-- On-page modal to ask for player's name (required) -->
+    <div id="nameModal" style="display:none;">
+      <div class="modal-content">
+        <label for="nameInput"><strong>Enter your name</strong></label>
+        <input id="nameInput" type="text" placeholder="Your name">
+        <div id="nameError"></div>
+        <div style="text-align:right; margin-top:8px;">
+          <button id="nameSubmit">Continue</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
